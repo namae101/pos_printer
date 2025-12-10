@@ -170,16 +170,16 @@ class PrinterCubit extends Cubit<PrinterState> {
         throw Exception('Failed to decode image');
       }
 
-      // Convert to grayscale and ensure width is divisible by 8
+      // Convert to grayscale
       var processedImage = img.grayscale(decodedImage);
-      if (processedImage.width % 8 != 0) {
-        final newWidth = processedImage.width + (8 - (processedImage.width % 8));
+      // Ensure width is 576 dot resolution of the printer
+      const imageWidth = 576;
+      if (processedImage.width != imageWidth) {
         processedImage = img.copyResize(
           processedImage,
-          width: newWidth,
+          width: imageWidth,
         );
       }
-
       // Generate printer commands
       final profile = await CapabilityProfile.load();
       final generator = Generator(PaperSize.mm80, profile);

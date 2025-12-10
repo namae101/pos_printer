@@ -166,20 +166,15 @@ class PrinterView extends StatelessWidget {
                             const SizedBox(width: 8),
                             Text(
                               state.isConnected
-                                  ? 'Connected'
+                                  ? 'Connected to ${state.selectedPrinter?.name}'
                                   : 'Not Connected',
-                              style: TextStyle(
-                                color: state.isConnected
-                                    ? Colors.green
-                                    : Colors.red,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(color: state.isConnected ? Colors.green : Colors.red, fontWeight: FontWeight.bold),
                             ),
                           ],
-                        ),
-                      ],
-                    ],
-                  ),
+                        )
+                      ]
+                    ]
+                  )
                 ),
 
                 const SizedBox(height: 24),
@@ -254,7 +249,7 @@ class PrinterView extends StatelessWidget {
                         : const Icon(Icons.print),
                     label: Text(state.isPrinting ? 'Printing...' : 'Print Image'),
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                     ),
                   ),
                 ),
