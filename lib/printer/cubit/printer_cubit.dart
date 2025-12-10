@@ -57,11 +57,13 @@ class PrinterCubit extends Cubit<PrinterState> {
 
   void _initialize() {
     _flutterThermalPrinterPlugin.devicesStream.listen((List<Printer> printers) {
-      emit(state.copyWith(
-        printers: printers,
-        isScanning: false,
-        error: null,
-      ));
+      emit(
+        state.copyWith(
+          printers: printers,
+          isScanning: false,
+          error: null,
+        ),
+      );
     });
   }
 
@@ -72,18 +74,22 @@ class PrinterCubit extends Cubit<PrinterState> {
         connectionTypes: [ConnectionType.USB],
       );
     } catch (e) {
-      emit(state.copyWith(
-        isScanning: false,
-        error: 'Failed to scan for printers: ${e.toString()}',
-      ));
+      emit(
+        state.copyWith(
+          isScanning: false,
+          error: 'Failed to scan for printers: ${e.toString()}',
+        ),
+      );
     }
   }
 
   void selectPrinter(Printer printer) {
-    emit(state.copyWith(
-      selectedPrinter: printer,
-      error: null,
-    ));
+    emit(
+      state.copyWith(
+        selectedPrinter: printer,
+        error: null,
+      ),
+    );
   }
 
   Future<void> connect() async {
@@ -97,15 +103,19 @@ class PrinterCubit extends Cubit<PrinterState> {
       final connected = await _flutterThermalPrinterPlugin.connect(
         state.selectedPrinter!,
       );
-      emit(state.copyWith(
-        isConnected: connected,
-        error: connected ? null : 'Failed to connect to printer',
-      ));
+      emit(
+        state.copyWith(
+          isConnected: connected,
+          error: connected ? null : 'Failed to connect to printer',
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        isConnected: false,
-        error: 'Failed to connect: ${e.toString()}',
-      ));
+      emit(
+        state.copyWith(
+          isConnected: false,
+          error: 'Failed to connect: ${e.toString()}',
+        ),
+      );
     }
   }
 
@@ -129,15 +139,19 @@ class PrinterCubit extends Cubit<PrinterState> {
         source: ImageSource.gallery,
       );
       if (image != null) {
-        emit(state.copyWith(
-          selectedImagePath: image.path,
-          error: null,
-        ));
+        emit(
+          state.copyWith(
+            selectedImagePath: image.path,
+            error: null,
+          ),
+        );
       }
     } catch (e) {
-      emit(state.copyWith(
-        error: 'Failed to select image: ${e.toString()}',
-      ));
+      emit(
+        state.copyWith(
+          error: 'Failed to select image: ${e.toString()}',
+        ),
+      );
     }
   }
 
@@ -195,10 +209,12 @@ class PrinterCubit extends Cubit<PrinterState> {
 
       emit(state.copyWith(isPrinting: false, error: null));
     } catch (e) {
-      emit(state.copyWith(
-        isPrinting: false,
-        error: 'Failed to print image: ${e.toString()}',
-      ));
+      emit(
+        state.copyWith(
+          isPrinting: false,
+          error: 'Failed to print image: ${e.toString()}',
+        ),
+      );
     }
   }
 
@@ -210,4 +226,3 @@ class PrinterCubit extends Cubit<PrinterState> {
     return super.close();
   }
 }
-

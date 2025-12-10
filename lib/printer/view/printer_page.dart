@@ -76,9 +76,11 @@ class PrinterView extends StatelessWidget {
                                 ),
                               )
                             : const Icon(Icons.search),
-                        label: Text(state.isScanning
-                            ? 'Scanning...'
-                            : 'Scan for USB Printers'),
+                        label: Text(
+                          state.isScanning
+                              ? 'Scanning...'
+                              : 'Scan for USB Printers',
+                        ),
                       ),
                       const SizedBox(height: 16),
                       if (state.printers.isEmpty && !state.isScanning)
@@ -96,7 +98,8 @@ class PrinterView extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         ...state.printers.map((printer) {
-                          final isSelected = state.selectedPrinter != null &&
+                          final isSelected =
+                              state.selectedPrinter != null &&
                               state.selectedPrinter?.address == printer.address;
                           return Card(
                             margin: const EdgeInsets.only(bottom: 8),
@@ -117,8 +120,10 @@ class PrinterView extends StatelessWidget {
                                 style: const TextStyle(fontSize: 12),
                               ),
                               trailing: isSelected
-                                  ? const Icon(Icons.check_circle,
-                                      color: Colors.green)
+                                  ? const Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                    )
                                   : null,
                               onTap: () => context
                                   .read<PrinterCubit>()
@@ -131,12 +136,13 @@ class PrinterView extends StatelessWidget {
                           children: [
                             Expanded(
                               child: ElevatedButton(
-                                onPressed: state.selectedPrinter == null ||
+                                onPressed:
+                                    state.selectedPrinter == null ||
                                         state.isConnected
                                     ? null
                                     : () => context
-                                        .read<PrinterCubit>()
-                                        .connect(),
+                                          .read<PrinterCubit>()
+                                          .connect(),
                                 child: const Text('Connect'),
                               ),
                             ),
@@ -145,8 +151,8 @@ class PrinterView extends StatelessWidget {
                               child: OutlinedButton(
                                 onPressed: state.isConnected
                                     ? () => context
-                                        .read<PrinterCubit>()
-                                        .disconnect()
+                                          .read<PrinterCubit>()
+                                          .disconnect()
                                     : null,
                                 child: const Text('Disconnect'),
                               ),
@@ -160,7 +166,9 @@ class PrinterView extends StatelessWidget {
                               state.isConnected
                                   ? Icons.check_circle
                                   : Icons.cancel,
-                              color: state.isConnected ? Colors.green : Colors.red,
+                              color: state.isConnected
+                                  ? Colors.green
+                                  : Colors.red,
                               size: 16,
                             ),
                             const SizedBox(width: 8),
@@ -168,13 +176,18 @@ class PrinterView extends StatelessWidget {
                               state.isConnected
                                   ? 'Connected to ${state.selectedPrinter?.name}'
                                   : 'Not Connected',
-                              style: TextStyle(color: state.isConnected ? Colors.green : Colors.red, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                color: state.isConnected
+                                    ? Colors.green
+                                    : Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
-                        )
-                      ]
-                    ]
-                  )
+                        ),
+                      ],
+                    ],
+                  ),
                 ),
 
                 const SizedBox(height: 24),
@@ -233,7 +246,8 @@ class PrinterView extends StatelessWidget {
                 _buildSection(
                   title: 'Print',
                   child: ElevatedButton.icon(
-                    onPressed: state.isConnected &&
+                    onPressed:
+                        state.isConnected &&
                             state.selectedImagePath != null &&
                             !state.isPrinting
                         ? () => context.read<PrinterCubit>().printImage()
@@ -247,9 +261,14 @@ class PrinterView extends StatelessWidget {
                             ),
                           )
                         : const Icon(Icons.print),
-                    label: Text(state.isPrinting ? 'Printing...' : 'Print Image'),
+                    label: Text(
+                      state.isPrinting ? 'Printing...' : 'Print Image',
+                    ),
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 16,
+                        horizontal: 16,
+                      ),
                     ),
                   ),
                 ),
@@ -286,4 +305,3 @@ class PrinterView extends StatelessWidget {
     );
   }
 }
-
