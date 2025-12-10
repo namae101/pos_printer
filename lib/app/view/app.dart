@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pos_printer/counter/counter.dart';
-import 'package:pos_printer/l10n/l10n.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,8 +13,6 @@ class App extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
       home: const CounterPage(),
     );
   }
