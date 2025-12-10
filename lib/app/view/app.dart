@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pos_printer/counter/counter.dart';
+import 'package:pos_printer/printer/printer.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,7 +13,7 @@ class App extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const CounterPage(),
+      home: const PrinterPage(),
     );
   }
 }
